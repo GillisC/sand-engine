@@ -138,15 +138,20 @@
     <ClCompile Include="movable_solid.h" />
     <ClCompile Include="sand.cpp" />
     <ClCompile Include="sand_engine.cpp" />
-    <ClCompile Include="unmovable_solid.h" />
+    <ClCompile Include="stone.cpp" />
+    <ClCompile Include="immovable_solid.h" />
+    <ClCompile Include="water.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="color.h" />
     <ClInclude Include="element.h" />
     <ClInclude Include="grid.h" />
+    <ClInclude Include="liquid.h" />
     <ClInclude Include="sand.h" />
     <ClInclude Include="sand_engine.h" />
     <ClInclude Include="solid.h" />
+    <ClInclude Include="stone.h" />
+    <ClInclude Include="water.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

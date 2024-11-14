@@ -1,9 +1,10 @@
 #include "solid.h"
 
-class UnmovableSolid : public Solid {
+class ImmovableSolid : public Solid {
 public:
 	
-	UnmovableSolid(Color color) : Solid(color) {}
+	ImmovableSolid(Color color) : Solid(color) {}
+
 	void update(Grid& grid, int x, int y) override {
 		// Do nothing
 	}

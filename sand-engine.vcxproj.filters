@@ -30,10 +30,16 @@
     <ClCompile Include="movable_solid.h">
       <Filter>Header Files\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="unmovable_solid.h">
+    <ClCompile Include="immovable_solid.h">
       <Filter>Header Files\Elements</Filter>
     </ClCompile>
     <ClCompile Include="sand.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="water.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stone.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -54,6 +60,15 @@
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
     <ClInclude Include="sand.h">
+      <Filter>Header Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="liquid.h">
+      <Filter>Header Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="water.h">
+      <Filter>Header Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="stone.h">
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,6 +6,8 @@
 
 #include "grid.h"
 #include "sand.h"
+#include "water.h"
+#include "stone.h"
 
 class SandEngine {
 public:
@@ -19,6 +21,4 @@ public:
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
-
-	void init();
 };

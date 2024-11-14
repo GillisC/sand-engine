@@ -63,7 +63,7 @@ void SandEngine::run() {
 				for (const auto& tup : selection) {
 					int x = std::get<0>(tup);
 					int y = std::get<1>(tup);
-					grid.set(x, y, std::make_shared<Sand>());
+					grid.set(x, y, std::make_shared<Stone>());
 				}
 			}
 		}
