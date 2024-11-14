@@ -1,13 +1,17 @@
 #pragma once
 
+#include <SDL2/SDL.h>
+
 #include <iostream>
 
-#include <SDL2/SDL.h>
+#include "grid.h"
+#include "sand.h"
 
 class SandEngine {
 public:
 	int width, height, fps;
 	bool running;
+	Grid grid;
 
 	SandEngine(int width, int height, int fps);
 	void run();

@@ -2,9 +2,7 @@
 
 #include "element.h"
 
-class Solid : Element {
+class Solid : public Element {
 public:
-	int inertia;
-private:
-
+	Solid(Color color) : Element(color) {}
 };

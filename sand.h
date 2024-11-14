@@ -1,10 +1,9 @@
 #pragma once
 
 #include "movable_solid.h"
+#include "grid.h"
 
-class Sand : MovableSolid {
+class Sand : public MovableSolid {
 public:
 	Sand();
-	void update(Grid& grid, int x, int y) override;
-
 };

@@ -8,26 +8,19 @@ class Grid;
 // Base class for all elements
 class Element {
 public:
+    Color color;
 
-    Element(int red, int green, int blue)
-        : r(red), g(green), b(blue) {}
-
+    Element(Color color) : color(color) {}
 
     virtual void update(Grid& grid, int x, int y) = 0;
-    virtual void display(SDL_Renderer* renderer, int x, int y) const = 0;
-
-    int getRed() const { return r; }
-    int getGreen() const { return g; }
-    int getBlue() const { return b; }
-
-	void setRed(int red) { r = red; }
-	void setGreen(int green) { g = green; }
-	void setBlue(int blue) { b = blue; }
+    
+    // Default rendering
+    virtual void display(SDL_Renderer* renderer, int x, int y) {
+        SDL_SetRenderDrawColor(renderer, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+        SDL_RenderDrawPoint(renderer, x, y);
+    }
+    
 
     virtual ~Element() = default;
 
-private:
-    int r;
-    int g;
-    int b;
 };
