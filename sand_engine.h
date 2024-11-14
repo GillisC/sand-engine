@@ -14,6 +14,12 @@ public:
 	int width, height, fps;
 	bool running;
 	Grid grid;
+	
+	enum Material {
+		STONE,
+		WATER,
+		SAND
+	};
 
 	SandEngine(int width, int height, int fps);
 	void run();
@@ -21,4 +27,8 @@ public:
 private:
 	SDL_Window* window;
 	SDL_Renderer* renderer;
+
+	void placeMaterial(Grid& grid, int x, int y, Material material);
+
+	
 };

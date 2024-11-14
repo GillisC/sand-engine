@@ -1,6 +1,7 @@
 #include "sand_engine.h"
 
 
+
 SandEngine::SandEngine(int width, int height, int fps) :
 	width(width), height(height), fps(fps), running(true), grid(width, height) {
 	
@@ -41,6 +42,7 @@ SandEngine::SandEngine(int width, int height, int fps) :
 
 void SandEngine::run() {
 	SDL_Event event;
+	Material currentMaterial = WATER;
 
 	while (running) {
 		SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
@@ -54,6 +56,17 @@ void SandEngine::run() {
 				if (event.key.keysym.sym == SDLK_ESCAPE) {
 					running = false;
 				}
+				if (event.key.keysym.sym == SDLK_1) {
+					currentMaterial = SandEngine::Material::STONE;
+				}
+				if (event.key.keysym.sym == SDLK_2) {
+					currentMaterial = SandEngine::Material::WATER;
+				}
+				if (event.key.keysym.sym == SDLK_3) {
+					currentMaterial = SandEngine::Material::SAND;
+
+
+				}
 				else {
 					std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 				}
@@ -63,7 +76,7 @@ void SandEngine::run() {
 				for (const auto& tup : selection) {
 					int x = std::get<0>(tup);
 					int y = std::get<1>(tup);
-					grid.set(x, y, std::make_shared<Stone>());
+					placeMaterial(grid, x, y, currentMaterial);
 				}
 			}
 		}
@@ -79,4 +92,20 @@ void SandEngine::run() {
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_Quit();
+}
+
+void SandEngine::placeMaterial(Grid& grid, int x, int y, SandEngine::Material material) {
+	// Places the currently selected material
+	switch (material) 
+	{
+		case SandEngine::Material::STONE:
+			grid.set(x, y, std::make_shared<Stone>());
+			break;
+		case SandEngine::Material::WATER:
+			grid.set(x, y, std::make_shared<Water>());
+			break;
+		case SandEngine::Material::SAND:
+			grid.set(x, y, std::make_shared<Sand>());
+			break;
+	}
 }
