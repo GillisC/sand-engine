@@ -21,9 +21,33 @@
     <ClCompile Include="sand_engine.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="movable_solid.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
+    <ClCompile Include="unmovable_solid.h">
+      <Filter>Header Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sand_engine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="grid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="element.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="color.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="solid.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="sand.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
