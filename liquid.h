@@ -33,11 +33,11 @@ public:
         if (dist(rng) == 0) {
             // Left
             if (x - 1 >= 0 && grid.isEmpty(x - 1, y)) {
-                grid.swap(x, y, x - 1, y);
+                grid.swap(x, y, disperse(grid, x, y, -1), y);
             }
             // Right
             else if (x + 1 < grid.getGridWidth() && grid.isEmpty(x + 1, y)) {
-                grid.swap(x, y, x + 1, y);
+                grid.swap(x, y, disperse(grid, x, y, 1), y);
             }
         }
         else if (dist(rng) == 1) {
@@ -57,7 +57,7 @@ private:
         int new_x = 0;
         for (int i = 0; i < dispersion_factor; i++) {
             int dx = direction * i;
-            if (x + dx >= 0 && x + dx < grid.getGridWidth()) {
+            if (x + dx >= 0 && x + dx < grid.getGridWidth() && grid.isEmpty(x+dx, y)) {
                 new_x = dx + x;
             }
         }
