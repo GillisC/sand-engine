@@ -70,7 +70,7 @@ void SandEngine::run() {
 				}
 			}
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
-				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 20);
+				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 10);
 				for (const auto& tup : selection) {
 					int x = std::get<0>(tup);
 					int y = std::get<1>(tup);
@@ -98,15 +98,12 @@ void SandEngine::placeMaterial(Grid& grid, int x, int y, SandEngine::Material ma
 	{
 		case SandEngine::Material::STONE:
 			grid.set(x, y, std::make_shared<Stone>());
-			std::cout << "Current material: Stone" << std::endl;
 			break;
 		case SandEngine::Material::WATER:
 			grid.set(x, y, std::make_shared<Water>());
-			std::cout << "Current material: Water" << std::endl;
 			break;
 		case SandEngine::Material::SAND:
 			grid.set(x, y, std::make_shared<Sand>());
-			std::cout << "Current material: Sand" << std::endl;
 			break;
 	}
 }

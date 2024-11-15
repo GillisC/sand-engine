@@ -6,9 +6,10 @@
 int width = 720;
 int height = 480;
 int fps = 60;
+int pixelSize = 4;
 
 int main(int argc, char* argv[]) {
-	SandEngine sandEngine = SandEngine(width, height, fps, 2);
+	SandEngine sandEngine = SandEngine(width, height, fps, pixelSize);
 
 	sandEngine.run();
 

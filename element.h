@@ -27,6 +27,10 @@ public:
         }
         
     }
+
+    virtual bool isLiquid() const { return false; }
+    virtual bool isSolid() const { return false; }
+    virtual bool isGas() const { return false; }
     
 
     

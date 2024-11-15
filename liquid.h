@@ -28,7 +28,7 @@ public:
         // If there is space to the left or right, choose direction randomly
         std::random_device dev;
         std::mt19937 rng(dev());
-        std::uniform_int_distribution<std::mt19937::result_type> dist(0, 1); // distribution in range [1, 6]
+        std::uniform_int_distribution<std::mt19937::result_type> dist(0, 1); // distribution in range [0, 1]
 
         if (dist(rng) == 0) {
             // Left
@@ -51,6 +51,9 @@ public:
             }
         }
 	}
+
+    bool isLiquid() const override { return true; }
+
 private:
     int disperse(Grid& grid, int x, int y, int direction) {
         // Travels in the x direction and based on the dispersion factor finds the next cell to occupy

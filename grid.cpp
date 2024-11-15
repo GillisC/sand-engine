@@ -53,6 +53,11 @@ bool Grid::isEmpty(int x, int y) const {
     return false;
 }
 
+bool Grid::isLiquid(int x, int y) const {
+    auto element = grid[y][x];
+    return element && element->isLiquid();
+}
+
 
 void Grid::updateElements() {
     // Go backwards through the grid to not update the same cell more than once

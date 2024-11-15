@@ -1,3 +1,4 @@
+#pragma once
 
 #include "solid.h"
 #include "grid.h"
@@ -8,7 +9,7 @@ public:
 
 	void update(Grid& grid, int x, int y) override {
         // Below
-        if (y + 1 < grid.getGridHeight() && grid.isEmpty(x, y + 1)) {
+        if (y + 1 < grid.getGridHeight() && (grid.isLiquid(x, y + 1) || grid.isEmpty(x, y + 1) )) {
             grid.swap(x, y, x, y + 1);
         }
         // Below left

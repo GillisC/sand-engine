@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include <string>
 
+
 class Grid {
 public:
     // Attributes
@@ -20,6 +21,7 @@ public:
     void set(int x, int y, std::shared_ptr<Element> element);
     void swap(int x1, int y1, int x2, int y2);
     bool isEmpty(int x, int y) const;
+    bool isLiquid(int x, int y) const;
     void updateElements();
     void displayElements(SDL_Renderer* renderer) const;
     int getGridWidth() const;
