@@ -8,7 +8,7 @@ int height = 480;
 int fps = 60;
 
 int main(int argc, char* argv[]) {
-	SandEngine sandEngine = SandEngine(width, height, fps);
+	SandEngine sandEngine = SandEngine(width, height, fps, 2);
 
 	sandEngine.run();
 

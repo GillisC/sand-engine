@@ -1,13 +1,13 @@
 #include "grid.h"
 
-Grid::Grid(int w, int h)
-    : width(w), height(h) {
-    std::cout << "Constructor called with width: " << width << ", height: " << height << std::endl;
+Grid::Grid(int w, int h, int pixelSize)
+    : gridWidth(int(w / pixelSize)), gridHeight(int(h / pixelSize)), windowWidth(w), windowHeight(h), pixelSize(pixelSize) {
+    std::cout << "Constructor called with width: " << gridWidth << ", height: " << gridHeight << std::endl;
 
     // Initialize the grid
-    grid = std::vector<std::vector<std::shared_ptr<Element>>>(height, std::vector<std::shared_ptr<Element>>(width, nullptr));
+    grid = std::vector<std::vector<std::shared_ptr<Element>>>(gridHeight, std::vector<std::shared_ptr<Element>>(gridWidth, nullptr));
 
-    std::cout << "Grid initialized with dimensions: " << width << " x " << height << std::endl;
+    std::cout << "Grid initialized with dimensions: " << gridWidth << " x " << gridHeight << std::endl;
     std::cout << "grid.size(): " << grid.size() << std::endl;
     if (!grid.empty()) {
         std::cout << "grid[0].size(): " << grid[0].size() << std::endl;
@@ -17,7 +17,7 @@ Grid::Grid(int w, int h)
 
 // Clears the grid
 void Grid::clear() {
-    grid.assign(height, std::vector<std::shared_ptr<Element>>(width, nullptr));
+    grid.assign(gridHeight, std::vector<std::shared_ptr<Element>>(gridWidth, nullptr));
 }
 
 void Grid::set(int x, int y, std::shared_ptr<Element> element) {
@@ -56,8 +56,8 @@ bool Grid::isEmpty(int x, int y) const {
 
 void Grid::updateElements() {
     // Go backwards through the grid to not update the same cell more than once
-    for (int i = height - 1; i >= 0; i--) {
-        for (int j = width - 1; j >= 0; j--) {
+    for (int i = gridHeight - 1; i >= 0; i--) {
+        for (int j = gridWidth - 1; j >= 0; j--) {
             if (grid[i][j] != nullptr) {
                 grid[i][j]->update(*this, j, i);
             }
@@ -66,29 +66,33 @@ void Grid::updateElements() {
 }
 
 void Grid::displayElements(SDL_Renderer* renderer) const {
-    for (int i = 0; i < height; i++) {
-        for (int j = 0; j < width; j++) {
+    for (int i = 0; i < gridHeight; i++) {
+        for (int j = 0; j < gridWidth; j++) {
             if (grid[i][j] != nullptr) {
-                grid[i][j]->display(renderer, j, i);
+                grid[i][j]->display(renderer, j, i, pixelSize);
             }
         }
     }
 }
 
-int Grid::getWidth() const {
-    return width;
+int Grid::getGridWidth() const {
+    return gridWidth;
 }
 
-int Grid::getHeight() const {
-    return height;
+int Grid::getGridHeight() const {
+    return gridHeight;
 }
 
-std::string Grid::toString() const {
-    return "Grid(width=" + std::to_string(width) + ", height=" + std::to_string(height) + ")";
+int Grid::getWindowWidth() const {
+    return windowWidth;
+}
+
+int Grid::getWindowHeight() const {
+    return windowHeight;
 }
 
 bool Grid::isInBounds(int x, int y) const {
-    return x >= 0 && x <= width && y >= 0 && y <= height;
+    return x >= 0 && x <= gridWidth && y >= 0 && y <= gridHeight;
 }
 
 double distanceSquared(int x1, int y1, int x2, int y2) {
@@ -98,10 +102,14 @@ double distanceSquared(int x1, int y1, int x2, int y2) {
 std::vector<std::tuple<int, int>> Grid::getCircleSelection(int x, int y, int radius) const {
     std::vector<std::tuple<int, int>> selected;
     double radiusSquared = radius * radius;
+    
+    int grid_x, grid_y;
+    grid_x = x / pixelSize;
+    grid_y = y / pixelSize;
 
-    for (int i = std::max(0, y - radius); i < std::min(height, y + radius); ++i) {
-        for (int j = std::max(0, x - radius); j < std::min(width, x + radius); ++j) {
-            if (distanceSquared(x, y, j, i) <= radiusSquared) {
+    for (int i = std::max(0, grid_y - radius); i < std::min(gridHeight, grid_y + radius); ++i) {
+        for (int j = std::max(0, grid_x - radius); j < std::min(gridWidth, grid_x + radius); ++j) {
+            if (distanceSquared(grid_x, grid_y, j, i) <= radiusSquared) {
                 selected.emplace_back(j, i);
             }
         }

@@ -14,15 +14,15 @@ public:
 
 	void update(Grid& grid, int x, int y) {
         // Below
-        if (y + 1 < grid.getHeight() && grid.isEmpty(x, y + 1)) {
+        if (y + 1 < grid.getGridHeight() && grid.isEmpty(x, y + 1)) {
             grid.swap(x, y, x, y + 1);
         }
         // Below left
-        else if (x - 1 >= 0 && y + 1 < grid.getHeight() && grid.isEmpty(x - 1, y + 1)) {
+        else if (x - 1 >= 0 && y + 1 < grid.getGridHeight() && grid.isEmpty(x - 1, y + 1)) {
             grid.swap(x, y, x - 1, y + 1);
         }
         // Below right
-        else if (x + 1 < grid.getWidth() && y + 1 < grid.getHeight() && grid.isEmpty(x + 1, y + 1)) {
+        else if (x + 1 < grid.getGridWidth() && y + 1 < grid.getGridHeight() && grid.isEmpty(x + 1, y + 1)) {
             grid.swap(x, y, x + 1, y + 1);
         }
         // If there is space to the left or right, choose direction randomly
@@ -36,13 +36,13 @@ public:
                 grid.swap(x, y, x - 1, y);
             }
             // Right
-            else if (x + 1 < grid.getWidth() && grid.isEmpty(x + 1, y)) {
+            else if (x + 1 < grid.getGridWidth() && grid.isEmpty(x + 1, y)) {
                 grid.swap(x, y, x + 1, y);
             }
         }
         else if (dist(rng) == 1) {
             // Right
-            if (x + 1 < grid.getWidth() && grid.isEmpty(x + 1, y)) {
+            if (x + 1 < grid.getGridWidth() && grid.isEmpty(x + 1, y)) {
                 grid.swap(x, y, disperse(grid, x, y, 1), y);
             }
             // Left
@@ -57,7 +57,7 @@ private:
         int new_x = 0;
         for (int i = 0; i < dispersion_factor; i++) {
             int dx = direction * i;
-            if (x + dx >= 0 && x + dx < grid.getWidth()) {
+            if (x + dx >= 0 && x + dx < grid.getGridWidth()) {
                 new_x = dx + x;
             }
         }

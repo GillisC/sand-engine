@@ -13,7 +13,7 @@ public:
     std::vector<std::vector<std::shared_ptr<Element>>> grid;
 
     // Constructor
-    Grid(int width, int height);
+    Grid(int windowWidth, int windowHeight, int pixelSize);
 
     // Methods
     void clear();
@@ -22,15 +22,16 @@ public:
     bool isEmpty(int x, int y) const;
     void updateElements();
     void displayElements(SDL_Renderer* renderer) const;
-    int getWidth() const;
-    int getHeight() const;
+    int getGridWidth() const;
+    int getGridHeight() const;
+    int getWindowWidth() const;
+    int getWindowHeight() const;
     std::vector<std::tuple<int, int>> getCircleSelection(int x, int y, int radius) const;
-    std::string toString() const;
     bool isInBounds(int x, int y) const;
 
-
+    
 private:
-    int width, height;
+    int gridWidth, gridHeight, windowWidth, windowHeight, pixelSize;
 
     
 };

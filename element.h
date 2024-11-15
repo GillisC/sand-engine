@@ -16,9 +16,16 @@ public:
     virtual void update(Grid& grid, int x, int y) = 0;
     
     // Default rendering
-    virtual void display(SDL_Renderer* renderer, int x, int y) {
+    virtual void display(SDL_Renderer* renderer, int x, int y, int pixelSize) {
         SDL_SetRenderDrawColor(renderer, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
-        SDL_RenderDrawPoint(renderer, x, y);
+        if (pixelSize == 1) {
+            SDL_RenderDrawPoint(renderer, x, y);
+        }
+        else {
+            SDL_Rect rect = { x * pixelSize, y * pixelSize, pixelSize, pixelSize };
+            SDL_RenderFillRect(renderer, &rect);
+        }
+        
     }
     
 

@@ -2,8 +2,8 @@
 
 
 
-SandEngine::SandEngine(int width, int height, int fps) :
-	width(width), height(height), fps(fps), running(true), grid(width, height) {
+SandEngine::SandEngine(int width, int height, int fps, int pixelSize = 1) :
+	width(width), height(height), fps(fps), running(true), grid(width, height, pixelSize), pixelSize(pixelSize) {
 	
 	if (SDL_Init(SDL_INIT_VIDEO) < 0) {
 		std::cout << "SDL could not be initialized: " << SDL_GetError() << std::endl;
@@ -66,7 +66,7 @@ void SandEngine::run() {
 					currentMaterial = SandEngine::Material::SAND;
 				}
 				else {
-					std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
+					//std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 				}
 			}
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
@@ -98,12 +98,15 @@ void SandEngine::placeMaterial(Grid& grid, int x, int y, SandEngine::Material ma
 	{
 		case SandEngine::Material::STONE:
 			grid.set(x, y, std::make_shared<Stone>());
+			std::cout << "Current material: Stone" << std::endl;
 			break;
 		case SandEngine::Material::WATER:
 			grid.set(x, y, std::make_shared<Water>());
+			std::cout << "Current material: Water" << std::endl;
 			break;
 		case SandEngine::Material::SAND:
 			grid.set(x, y, std::make_shared<Sand>());
+			std::cout << "Current material: Sand" << std::endl;
 			break;
 	}
 }

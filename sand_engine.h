@@ -11,7 +11,7 @@
 
 class SandEngine {
 public:
-	int width, height, fps;
+	int width, height, fps, pixelSize;
 	bool running;
 	Grid grid;
 	
@@ -21,7 +21,7 @@ public:
 		SAND
 	};
 
-	SandEngine(int width, int height, int fps);
+	SandEngine(int width, int height, int fps, int pixelSize);
 	void run();
 
 private:
