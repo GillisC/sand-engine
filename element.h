@@ -11,6 +11,7 @@ public:
     Color color;
 
     Element(Color color) : color(color) {}
+    virtual ~Element() = default;
 
     virtual void update(Grid& grid, int x, int y) = 0;
     
@@ -21,6 +22,6 @@ public:
     }
     
 
-    virtual ~Element() = default;
+    
 
 };

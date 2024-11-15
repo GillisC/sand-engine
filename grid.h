@@ -28,6 +28,7 @@ public:
     std::string toString() const;
     bool isInBounds(int x, int y) const;
 
+
 private:
     int width, height;
 

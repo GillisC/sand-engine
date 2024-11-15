@@ -53,6 +53,7 @@ bool Grid::isEmpty(int x, int y) const {
     return false;
 }
 
+
 void Grid::updateElements() {
     // Go backwards through the grid to not update the same cell more than once
     for (int i = height - 1; i >= 0; i--) {

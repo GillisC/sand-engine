@@ -64,8 +64,6 @@ void SandEngine::run() {
 				}
 				if (event.key.keysym.sym == SDLK_3) {
 					currentMaterial = SandEngine::Material::SAND;
-
-
 				}
 				else {
 					std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
