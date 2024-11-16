@@ -8,6 +8,7 @@
 #include "sand.h"
 #include "water.h"
 #include "stone.h"
+#include "steam.h"
 
 class SandEngine {
 public:
@@ -18,7 +19,11 @@ public:
 	enum Material {
 		STONE,
 		WATER,
-		SAND
+		SAND,
+		STEAM,
+		WOOD,
+		FIRE,
+		OIL
 	};
 
 	SandEngine(int width, int height, int fps, int pixelSize);

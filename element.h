@@ -2,6 +2,7 @@
 
 #include <SDL2/SDL.h>
 #include "color.h"
+#include "utils.h"
 
 class Grid;
 

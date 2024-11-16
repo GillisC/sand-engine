@@ -12,7 +12,7 @@ public:
 
     Liquid(Color color) : Element(color) {}
 
-	void update(Grid& grid, int x, int y) {
+	void update(Grid& grid, int x, int y) override {
         // Below
         if (y + 1 < grid.getGridHeight() && grid.isEmpty(x, y + 1)) {
             grid.swap(x, y, x, y + 1);
@@ -57,11 +57,14 @@ public:
 private:
     int disperse(Grid& grid, int x, int y, int direction) {
         // Travels in the x direction and based on the dispersion factor finds the next cell to occupy
-        int new_x = 0;
-        for (int i = 0; i < dispersion_factor; i++) {
-            int dx = direction * i;
-            if (x + dx >= 0 && x + dx < grid.getGridWidth() && grid.isEmpty(x+dx, y)) {
-                new_x = dx + x;
+        int new_x = x;
+        for (int i = 1; i <= dispersion_factor; i++) {
+            int temp = direction * i + x;
+            if (grid.isInBounds(temp, y) && grid.isEmpty(temp, y)) {
+                new_x = temp;
+            }
+            else {
+                return new_x;
             }
         }
         return new_x;

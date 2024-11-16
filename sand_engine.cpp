@@ -65,12 +65,17 @@ void SandEngine::run() {
 				if (event.key.keysym.sym == SDLK_3) {
 					currentMaterial = SandEngine::Material::SAND;
 				}
+				if (event.key.keysym.sym == SDLK_4) {
+					currentMaterial = SandEngine::Material::STEAM;
+				}
 				else {
 					//std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 				}
 			}
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
-				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 10, 0.8);
+
+				// Returns a tuple of coordinates
+				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 5, 0.8);
 				for (const auto& tup : selection) {
 					int x = std::get<0>(tup);
 					int y = std::get<1>(tup);
@@ -104,6 +109,9 @@ void SandEngine::placeMaterial(Grid& grid, int x, int y, SandEngine::Material ma
 			break;
 		case SandEngine::Material::SAND:
 			grid.set(x, y, std::make_shared<Sand>());
+			break;
+		case SandEngine::Material::STEAM:
+			grid.set(x, y, std::make_shared<Steam>());
 			break;
 	}
 }

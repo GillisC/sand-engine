@@ -97,7 +97,7 @@ int Grid::getWindowHeight() const {
 }
 
 bool Grid::isInBounds(int x, int y) const {
-    return x >= 0 && x <= gridWidth && y >= 0 && y <= gridHeight;
+    return x >= 0 && x < gridWidth && y >= 0 && y < gridHeight;
 }
 
 double distanceSquared(int x1, int y1, int x2, int y2) {
