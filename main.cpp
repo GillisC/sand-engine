@@ -1,12 +1,11 @@
 #define SDL_MAIN_HANDLED
 
-#include <iostream>
 #include "sand_engine.h"
 
-int width = 720;
-int height = 480;
-int fps = 60;
-int pixelSize = 4;
+const int width = 720;
+const int height = 480;
+const int fps = 60;
+const int pixelSize = 4;
 
 int main(int argc, char* argv[]) {
 	SandEngine sandEngine = SandEngine(width, height, fps, pixelSize);

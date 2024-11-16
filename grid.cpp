@@ -104,7 +104,7 @@ double distanceSquared(int x1, int y1, int x2, int y2) {
     return static_cast<double>((x2 - x1) * (x2 - x1) + (y2 - y1) * (y2 - y1));
 }
 
-std::vector<std::tuple<int, int>> Grid::getCircleSelection(int x, int y, int radius) const {
+std::vector<std::tuple<int, int>> Grid::getCircleSelection(int x, int y, int radius, double selectionChance) const {
     std::vector<std::tuple<int, int>> selected;
     double radiusSquared = radius * radius;
     
@@ -115,7 +115,9 @@ std::vector<std::tuple<int, int>> Grid::getCircleSelection(int x, int y, int rad
     for (int i = std::max(0, grid_y - radius); i < std::min(gridHeight, grid_y + radius); ++i) {
         for (int j = std::max(0, grid_x - radius); j < std::min(gridWidth, grid_x + radius); ++j) {
             if (distanceSquared(grid_x, grid_y, j, i) <= radiusSquared) {
-                selected.emplace_back(j, i);
+                if (randomReal() < selectionChance) {
+                    selected.emplace_back(j, i);
+                }
             }
         }
     }

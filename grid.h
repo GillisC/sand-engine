@@ -6,6 +6,7 @@
 #include "element.h"
 #include <SDL2/SDL.h>
 #include <string>
+#include "utils.h"
 
 
 class Grid {
@@ -28,7 +29,7 @@ public:
     int getGridHeight() const;
     int getWindowWidth() const;
     int getWindowHeight() const;
-    std::vector<std::tuple<int, int>> getCircleSelection(int x, int y, int radius) const;
+    std::vector<std::tuple<int, int>> getCircleSelection(int x, int y, int radius, double selectionChance = 1.0) const;
     bool isInBounds(int x, int y) const;
 
     

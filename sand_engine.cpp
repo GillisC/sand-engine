@@ -70,7 +70,7 @@ void SandEngine::run() {
 				}
 			}
 			if (event.type == SDL_MOUSEBUTTONDOWN) {
-				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 10);
+				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 10, 0.8);
 				for (const auto& tup : selection) {
 					int x = std::get<0>(tup);
 					int y = std::get<1>(tup);

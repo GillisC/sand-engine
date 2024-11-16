@@ -151,6 +151,7 @@
     <ClInclude Include="sand_engine.h" />
     <ClInclude Include="solid.h" />
     <ClInclude Include="stone.h" />
+    <ClInclude Include="utils.h" />
     <ClInclude Include="water.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
