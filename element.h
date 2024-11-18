@@ -9,7 +9,6 @@ class Grid;
 // Base class for all elements
 class Element {
 public:
-    Color color;
 
     Element(Color color) : color(color) {}
     virtual ~Element() = default;
@@ -18,7 +17,8 @@ public:
     
     // Default rendering
     virtual void display(SDL_Renderer* renderer, int x, int y, int pixelSize) {
-        SDL_SetRenderDrawColor(renderer, color.getRed(), color.getGreen(), color.getBlue(), color.getAlpha());
+        Color elementColor = getColor();
+        SDL_SetRenderDrawColor(renderer, elementColor.getRed(), elementColor.getGreen(), elementColor.getBlue(), color.getAlpha());
         if (pixelSize == 1) {
             SDL_RenderDrawPoint(renderer, x, y);
         }
@@ -29,11 +29,14 @@ public:
         
     }
 
+    virtual Color getColor() const { return color; }
+
     virtual bool isLiquid() const { return false; }
     virtual bool isSolid() const { return false; }
     virtual bool isGas() const { return false; }
     
-
+private:
+    Color color;
     
 
 };

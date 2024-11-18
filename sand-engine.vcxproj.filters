@@ -83,5 +83,8 @@
     <ClInclude Include="gas.h">
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
+    <ClInclude Include="fire.h">
+      <Filter>Header Files\Elements</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -146,6 +146,7 @@
   <ItemGroup>
     <ClInclude Include="color.h" />
     <ClInclude Include="element.h" />
+    <ClInclude Include="fire.h" />
     <ClInclude Include="gas.h" />
     <ClInclude Include="grid.h" />
     <ClInclude Include="liquid.h" />
