@@ -45,6 +45,12 @@
     <ClCompile Include="steam.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="fire.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="air.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sand_engine.h">
@@ -84,6 +90,9 @@
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
     <ClInclude Include="fire.h">
+      <Filter>Header Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="air.h">
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
   </ItemGroup>

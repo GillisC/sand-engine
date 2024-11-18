@@ -9,6 +9,7 @@
 #include "water.h"
 #include "stone.h"
 #include "steam.h"
+#include "fire.h"
 
 class SandEngine {
 public:

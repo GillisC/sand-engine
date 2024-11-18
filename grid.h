@@ -7,6 +7,7 @@
 #include <SDL2/SDL.h>
 #include <string>
 #include "utils.h"
+#include "air.h"
 
 
 class Grid {
@@ -20,7 +21,9 @@ public:
     // Methods
     void clear();
     void set(int x, int y, std::shared_ptr<Element> element);
+    std::shared_ptr<Element> get(int x, int y) const;
     void swap(int x1, int y1, int x2, int y2);
+    void remove(int x, int y);
     bool isEmpty(int x, int y) const;
     bool isLiquid(int x, int y) const;
     void updateElements();
@@ -35,6 +38,6 @@ public:
     
 private:
     int gridWidth, gridHeight, windowWidth, windowHeight, pixelSize;
+    std::shared_ptr<Air> air;
 
-    
 };

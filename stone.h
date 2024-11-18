@@ -5,4 +5,5 @@
 class Stone : public ImmovableSolid {
 public:
 	Stone();
+	bool isAir() const override { return false; }
 };

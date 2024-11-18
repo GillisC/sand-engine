@@ -5,7 +5,8 @@ Grid::Grid(int w, int h, int pixelSize)
     std::cout << "Constructor called with width: " << gridWidth << ", height: " << gridHeight << std::endl;
 
     // Initialize the grid
-    grid = std::vector<std::vector<std::shared_ptr<Element>>>(gridHeight, std::vector<std::shared_ptr<Element>>(gridWidth, nullptr));
+    air = std::make_shared<Air>(); // All air cells share the same instance of air
+    grid = std::vector<std::vector<std::shared_ptr<Element>>>(gridHeight, std::vector<std::shared_ptr<Element>>(gridWidth, air));
 
     std::cout << "Grid initialized with dimensions: " << gridWidth << " x " << gridHeight << std::endl;
     std::cout << "grid.size(): " << grid.size() << std::endl;
@@ -14,10 +15,9 @@ Grid::Grid(int w, int h, int pixelSize)
     }
 }
 
-
 // Clears the grid
 void Grid::clear() {
-    grid.assign(gridHeight, std::vector<std::shared_ptr<Element>>(gridWidth, nullptr));
+    grid.assign(gridHeight, std::vector<std::shared_ptr<Element>>(gridWidth, air));
 }
 
 void Grid::set(int x, int y, std::shared_ptr<Element> element) {
@@ -26,6 +26,16 @@ void Grid::set(int x, int y, std::shared_ptr<Element> element) {
     }
     else {
         std::cerr << "Out of bounds, trying to insert element into: (" << x << ", " << y << ")" << std::endl;
+    }
+}
+
+std::shared_ptr<Element> Grid::get(int x, int y) const {
+    if (isInBounds(x, y)) {
+        return grid[y][x];
+        std::cout << grid[y][x] << std::endl;
+    }
+    else {
+        std::cerr << "Out of bounds, trying to get element at: (" << x << ", " << y << ")" << std::endl;
     }
 }
 
@@ -40,12 +50,15 @@ void Grid::swap(int x1, int y1, int x2, int y2) {
     }
 }
 
+void Grid::remove(int x, int y) {
+    if (isInBounds(x, y)) {
+        grid[y][x] = air;
+    }
+}
+
 bool Grid::isEmpty(int x, int y) const {
     if (isInBounds(x, y)) {
-        if (grid[y][x] == nullptr) {
-            return true;
-        }
-        else return false;
+        return get(x, y)->isAir();
     }
     else {
         std::cerr << "Out of bounds, trying to check if cell is empty at: (" << x << ", " << y << ")" << std::endl;
@@ -54,8 +67,9 @@ bool Grid::isEmpty(int x, int y) const {
 }
 
 bool Grid::isLiquid(int x, int y) const {
-    auto element = grid[y][x];
-    return element && element->isLiquid();
+    if (isInBounds(x, y)) {
+        return get(x, y)->isLiquid();
+    }
 }
 
 
@@ -63,8 +77,13 @@ void Grid::updateElements() {
     // Go backwards through the grid to not update the same cell more than once
     for (int i = gridHeight - 1; i >= 0; i--) {
         for (int j = gridWidth - 1; j >= 0; j--) {
-            if (grid[i][j] != nullptr) {
-                grid[i][j]->update(*this, j, i);
+            auto element = get(j, i);
+            if (!element) {
+                std::cerr << "Null pointer at (" << j << ", " << i << ")\n";
+                continue;
+            }
+            if ( !(element->isAir())) {
+                get(j, i)->update(*this, j, i);
             }
         }
     }
@@ -73,8 +92,13 @@ void Grid::updateElements() {
 void Grid::displayElements(SDL_Renderer* renderer) const {
     for (int i = 0; i < gridHeight; i++) {
         for (int j = 0; j < gridWidth; j++) {
-            if (grid[i][j] != nullptr) {
-                grid[i][j]->display(renderer, j, i, pixelSize);
+            auto element = get(j, i);
+            if (!element) {
+                std::cerr << "Null pointer at (" << j << ", " << i << ")\n";
+                continue;
+            }
+            if ( !(element->isAir()) ) {
+                get(j, i)->display(renderer, j, i, pixelSize);
             }
         }
     }

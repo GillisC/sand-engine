@@ -34,7 +34,10 @@ public:
     virtual bool isLiquid() const { return false; }
     virtual bool isSolid() const { return false; }
     virtual bool isGas() const { return false; }
-    
+    virtual bool isFlammable() const { return false; }
+    virtual bool isAir() const { return false; }
+
+
 private:
     Color color;
     
