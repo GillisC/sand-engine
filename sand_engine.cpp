@@ -36,7 +36,6 @@ SandEngine::SandEngine(int width, int height, int fps, int pixelSize = 1) :
 	else {
 		std::cout << "Renderer successfully created" << std::endl;
 	}
-
 }
 
 
@@ -48,7 +47,8 @@ void SandEngine::run() {
 
 	while (running) {
 		Uint32 frameStart = SDL_GetTicks();
-
+		
+		SDL_SetRenderDrawBlendMode(renderer, SDL_BLENDMODE_BLEND);
 		SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
 		SDL_RenderClear(renderer);
 
@@ -79,7 +79,7 @@ void SandEngine::run() {
 					//std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 				}
 			}
-			if (event.type == SDL_MOUSEBUTTONDOWN) {
+			if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON_LMASK) {
 
 				// Returns a tuple of coordinates
 				auto selection = grid.getCircleSelection(event.motion.x, event.motion.y, 5, 0.8);

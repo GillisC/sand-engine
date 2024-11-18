@@ -6,7 +6,7 @@
 
 class Color {
 public:
-    Color(int r, int g, int b, int a = 255) :
+    Color(int r, int g, int b, int a) :
         r(r), g(g), b(b), a(a) {}
 
     int getRed() const { return r; }
@@ -45,5 +45,5 @@ inline Color varyColor(Color color, int variationRange = 20) {
     int b_new = color.getBlue() + distr(gen);
     b_new = std::clamp(b_new, 0, 255);
 
-    return Color(r_new, g_new, b_new);
+    return Color(r_new, g_new, b_new, color.getAlpha());
 }

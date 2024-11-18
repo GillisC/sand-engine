@@ -16,6 +16,9 @@
     <Filter Include="Header Files\Elements">
       <UniqueIdentifier>{4af72c0f-63a1-4467-bbb8-433858d7e9df}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\ElementImplementations">
+      <UniqueIdentifier>{726ab698-0171-4871-a193-a413d6950811}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -33,23 +36,23 @@
     <ClCompile Include="immovable_solid.h">
       <Filter>Header Files\Elements</Filter>
     </ClCompile>
-    <ClCompile Include="sand.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="water.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ElementImplementations</Filter>
     </ClCompile>
     <ClCompile Include="stone.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ElementImplementations</Filter>
     </ClCompile>
     <ClCompile Include="steam.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ElementImplementations</Filter>
+    </ClCompile>
+    <ClCompile Include="sand.cpp">
+      <Filter>Source Files\ElementImplementations</Filter>
     </ClCompile>
     <ClCompile Include="fire.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ElementImplementations</Filter>
     </ClCompile>
     <ClCompile Include="air.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\ElementImplementations</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

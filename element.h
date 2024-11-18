@@ -18,7 +18,7 @@ public:
     // Default rendering
     virtual void display(SDL_Renderer* renderer, int x, int y, int pixelSize) {
         Color elementColor = getColor();
-        SDL_SetRenderDrawColor(renderer, elementColor.getRed(), elementColor.getGreen(), elementColor.getBlue(), color.getAlpha());
+        SDL_SetRenderDrawColor(renderer, elementColor.getRed(), elementColor.getGreen(), elementColor.getBlue(), elementColor.getAlpha());
         if (pixelSize == 1) {
             SDL_RenderDrawPoint(renderer, x, y);
         }
