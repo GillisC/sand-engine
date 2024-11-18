@@ -11,6 +11,8 @@
 #include "steam.h"
 #include "fire.h"
 
+class Grid;
+
 class SandEngine {
 public:
 	int width, height, fps, pixelSize;

@@ -3,6 +3,8 @@
 #include "element.h"
 #include "grid.h"
 
+class Grid;
+
 // Behavoir of gases is to rise instead of fall down, otherwise they behave much like liquids.
 // Gases should disperse quicker if its clumped together and should "decay" into something when cooled down.
 class Gas : public Element {
@@ -27,26 +29,29 @@ public:
         }
         // If there is space to the left or right, choose direction randomly
         
-        if (randomInt(0, 1) == 0) {
-            // Left
-            if (grid.isInBounds(x - 1, y) && grid.isEmpty(x - 1, y)) {
-                grid.swap(x, y, disperse(grid, x, y, -1), y);
+        else if ((grid.isInBounds(x - 1, y) && grid.isEmpty(x - 1, y)) || (grid.isInBounds(x + 1, y) && grid.isEmpty(x + 1, y))) {
+            if (randomReal() <= 0.5) {
+                // Left
+                if (grid.isInBounds(x - 1, y) && grid.isEmpty(x - 1, y)) {
+                    grid.swap(x, y, disperse(grid, x, y, -1), y);
+                }
+                // Right
+                else if (grid.isInBounds(x + 1, y) && grid.isEmpty(x + 1, y)) {
+                    grid.swap(x, y, disperse(grid, x, y, 1), y);
+                }
             }
-            // Right
-            else if (grid.isInBounds(x + 1, y) && grid.isEmpty(x + 1, y)) {
-                grid.swap(x, y, disperse(grid, x, y, 1), y);
+            else {
+                // Right
+                if (grid.isInBounds(x + 1, y) && grid.isEmpty(x + 1, y)) {
+                    grid.swap(x, y, disperse(grid, x, y, 1), y);
+                }
+                // Left
+                else if (grid.isInBounds(x - 1, y) && grid.isEmpty(x - 1, y)) {
+                    grid.swap(x, y, disperse(grid, x, y, -1), y);
+                }
             }
         }
-        else {
-            // Right
-            if (grid.isInBounds(x + 1, y) && grid.isEmpty(x + 1, y)) {
-                grid.swap(x, y, disperse(grid, x, y, 1), y);
-            }
-            // Left
-            else if (grid.isInBounds(x - 1, y) && grid.isEmpty(x - 1, y)) {
-                grid.swap(x, y, disperse(grid, x, y, -1), y);
-            }
-        }
+        
     }
 
     bool isGas() const override { return true; }

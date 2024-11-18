@@ -2,6 +2,8 @@
 
 #include "element.h"
 
+class Grid;
+
 class Fire : public Element {
 public:
 	Fire();

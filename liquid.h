@@ -5,6 +5,7 @@
 #include "element.h"
 #include "grid.h"
 
+class Grid;
 
 class Liquid : public Element {
 public:

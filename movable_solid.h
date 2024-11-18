@@ -3,6 +3,8 @@
 #include "solid.h"
 #include "grid.h"
 
+class Grid;
+
 class MovableSolid : public Solid {
 public:
 	MovableSolid(Color color) : Solid(color) {}

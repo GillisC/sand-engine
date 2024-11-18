@@ -2,6 +2,8 @@
 
 #include "solid.h"
 
+class Grid;
+
 class ImmovableSolid : public Solid {
 public:
 	

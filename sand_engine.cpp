@@ -44,7 +44,11 @@ void SandEngine::run() {
 	SDL_Event event;
 	Material currentMaterial = WATER;
 
+	int frameDelay = 1000 / fps;
+
 	while (running) {
+		Uint32 frameStart = SDL_GetTicks();
+
 		SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
 		SDL_RenderClear(renderer);
 
@@ -92,7 +96,11 @@ void SandEngine::run() {
 
 		SDL_RenderPresent(renderer);
 
-
+		// Limits the framerate
+		Uint32 frameTime = SDL_GetTicks() - frameStart;
+		if (frameTime < frameDelay) {
+			SDL_Delay(frameDelay - frameTime);
+		}
 	}
 
 	SDL_DestroyWindow(window);

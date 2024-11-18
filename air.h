@@ -2,6 +2,8 @@
 
 #include "element.h"
 
+class Grid;
+
 class Air : public Element {
 public:
 	Air();

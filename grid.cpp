@@ -1,5 +1,6 @@
 #include "grid.h"
 
+
 Grid::Grid(int w, int h, int pixelSize)
     : gridWidth(int(w / pixelSize)), gridHeight(int(h / pixelSize)), windowWidth(w), windowHeight(h), pixelSize(pixelSize) {
     std::cout << "Constructor called with width: " << gridWidth << ", height: " << gridHeight << std::endl;
@@ -75,17 +76,31 @@ bool Grid::isLiquid(int x, int y) const {
 
 void Grid::updateElements() {
     // Go backwards through the grid to not update the same cell more than once
+    std::vector < std::shared_ptr<Element> > gases;
+    std::vector < std::pair<int, int>> coords;
+
     for (int i = gridHeight - 1; i >= 0; i--) {
         for (int j = gridWidth - 1; j >= 0; j--) {
-            auto element = get(j, i);
+            std::shared_ptr<Element> element = get(j, i);
             if (!element) {
                 std::cerr << "Null pointer at (" << j << ", " << i << ")\n";
                 continue;
             }
-            if ( !(element->isAir())) {
-                get(j, i)->update(*this, j, i);
+            if (element->isGas()) {
+                gases.push_back(element);
+                coords.push_back({ j, i });
+                continue;
+            }
+            if ( !(element->isAir()) ) {
+                element->update(*this, j, i);
             }
         }
+    }
+    // Update elements that fall upwards
+    // Loop backwards through the gases vector as we need to update from the bottom left to the upper right
+    for (int i = gases.size() - 1; i >= 0; i--) {
+        std::shared_ptr<Element> element = gases.at(i);
+        element->update(*this, coords.at(i).first, coords.at(i).second);
     }
 }
 
