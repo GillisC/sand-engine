@@ -10,6 +10,7 @@
 #include "stone.h"
 #include "steam.h"
 #include "fire.h"
+#include "wood.h"
 
 class Grid;
 

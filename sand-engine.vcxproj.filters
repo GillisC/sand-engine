@@ -54,6 +54,9 @@
     <ClCompile Include="air.cpp">
       <Filter>Source Files\ElementImplementations</Filter>
     </ClCompile>
+    <ClCompile Include="wood.cpp">
+      <Filter>Source Files\ElementImplementations</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sand_engine.h">
@@ -96,6 +99,9 @@
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
     <ClInclude Include="air.h">
+      <Filter>Header Files\Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="wood.h">
       <Filter>Header Files\Elements</Filter>
     </ClInclude>
   </ItemGroup>

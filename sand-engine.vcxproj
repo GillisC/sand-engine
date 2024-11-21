@@ -71,8 +71,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LibraryPath>C:\Users\Tim\vcpkg\installed\x64-windows\lib;$(LibraryPath)</LibraryPath>
-    <IncludePath>C:\Users\Tim\vcpkg\installed\x64-windows\include;$(IncludePath)</IncludePath>
+    <LibraryPath>C:\Users\timso\vcpkg\installed\x64-windows\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\timso\vcpkg\installed\x64-windows\include;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -147,6 +147,7 @@
     <ClCompile Include="stone.cpp" />
     <ClCompile Include="immovable_solid.h" />
     <ClCompile Include="water.cpp" />
+    <ClCompile Include="wood.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="air.h" />
@@ -163,6 +164,7 @@
     <ClInclude Include="stone.h" />
     <ClInclude Include="utils.h" />
     <ClInclude Include="water.h" />
+    <ClInclude Include="wood.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

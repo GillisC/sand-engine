@@ -75,6 +75,9 @@ void SandEngine::run() {
 				if (event.key.keysym.sym == SDLK_5) {
 					currentMaterial = SandEngine::Material::FIRE;
 				}
+				if (event.key.keysym.sym == SDLK_6) {
+					currentMaterial = SandEngine::Material::WOOD;
+				}
 				else {
 					//std::cout << "Key pressed: " << SDL_GetKeyName(event.key.keysym.sym) << std::endl;
 				}
@@ -127,8 +130,8 @@ void SandEngine::placeMaterial(Grid& grid, int x, int y, SandEngine::Material ma
 		case SandEngine::Material::FIRE:
 			grid.set(x, y, std::make_shared<Fire>());
 			break;
-		/*case SandEngine::Material::WOOD:
+		case SandEngine::Material::WOOD:
 			grid.set(x, y, std::make_shared<Wood>());
-			break;*/
+			break;
 	}
 }
